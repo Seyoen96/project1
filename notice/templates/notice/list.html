@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="container">
+    <h2>{{board}}</h2>
+    <table class="table table-striped">   
+        <tr>
+            <td>Num</td>
+            <td>Title</td>
+            <td>Writer</td>
+            <td>Date</td>
+            <td>Hit</td>
+        </tr>
+        
+        {% for board in list %}   
+        <tr>
+            <td>{{board.num}}</td>
+            <td><a href="{% url 'notice:select' board.num %}">{{board.title}}</a></td>
+            <td>{{board.writer}}</td>
+            <td>{{board.date}}</td>
+            <td>{{board.hit}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <ul class="pagination">
+        {% if pager.pre %}
+        <li><a href="{% url 'notice:listPage' page=pager.startNum %}">이전</a></li>
+        {% endif %}
+      
+        {% for i in pager.range %}    
+        <li><a href="{% url 'notice:listPage' i %}">{{i}}</a></li>    
+        {% endfor %}
+
+        {% if pager.next %}
+        <li><a href="{% url 'notice:listPage' pager.lastNum %}">다음</a></li>
+        {% endif %}
+
+    </ul>
+    <a href="{% url 'notice:write' %}" class="btn btn-danger">Write</a>
+</div>
+{% endblock contents %}

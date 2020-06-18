@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="container">
+    <h1>{{board}}</h1>
+    <form action="" method="post">
+        {% csrf_token  %}
+        <input type="hidden" id="num" name="num" value="{{vo.num}}">
+        <div class="form-group">
+          <label for="title">title</label>
+          <input type="text" class="form-control" id="title" name="title" value="{{vo.title}}">
+        </div>
+        <div class="form-group">
+          <label for="writer">writer</label>
+          <input type="text" class="form-control" id="writer" name="writer" value="{{vo.writer}}">
+        </div>
+        <div class="form-group">
+          <label for="contents">contents</label>
+          <textarea cols="" rows="" class="form-control" id="contents" name="contents">{{vo.contents}}</textarea>
+        </div>   
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+</div>
+{% endblock contents %}
